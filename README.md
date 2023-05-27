@@ -12,5 +12,3 @@
 ![plan](https://github.com/shagi80/Delphi_SKD_order/assets/114309458/66969b33-b416-464b-bc14-66b602d31323)
 
 ![plan2](https://github.com/shagi80/Delphi_SKD_order/assets/114309458/d7f615d8-a4e1-4ee0-a5a8-7e2f0a2a1b00)
-
-![part3](https://github.com/shagi80/Delphi_SKD_order/assets/114309458/ee642933-b466-4298-a81a-459cdce0fc3b)
