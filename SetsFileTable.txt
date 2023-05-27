@@ -1,0 +1,9 @@
+0000000003=C:\Users\User\Documents\Borland\Рабочее ПО\Заказы СКД\График поставок\base\WS30 1 шт.txt
+0000000004=C:\Users\User\Documents\Borland\Рабочее ПО\Заказы СКД\График поставок\base\WS35 1 ШТ.txt
+0000000005=C:\Users\User\Documents\Borland\Рабочее ПО\Заказы СКД\График поставок\base\WS40 1 шт.txt
+0000000018=C:\Users\User\Documents\Borland\Рабочее ПО\Заказы СКД\График поставок\base\WS50 1 шт.txt
+0000000019=C:\Users\User\Documents\Borland\Рабочее ПО\Заказы СКД\График поставок\base\WS60 1 ШТ.txt
+0000000020=C:\Users\User\Documents\Borland\Рабочее ПО\Заказы СКД\График поставок\base\WSS70 1 ШТ.txt
+0000000021=C:\Users\User\Documents\Borland\Рабочее ПО\Заказы СКД\График поставок\base\WS80 1 ШТ.txt
+0000000010=C:\Users\User\Documents\Borland\Рабочее ПО\Заказы СКД\График поставок\base\WS85 1 ШТ.txt
+0000000009=C:\Users\User\Documents\Borland\Рабочее ПО\Заказы СКД\График поставок\base\WS65 1 ШТ.txt

@@ -1,0 +1,448 @@
+unit LangUnit;
+
+interface
+
+const
+  lgRUS=0;
+  lgENG=1;
+  lgCN =2;
+
+var
+  Lang              : integer;
+  tCaption          : string;
+  tDtPnBomCap       : string;
+  tDtPnCIOCap       : string;
+  tDtPnEICap        : string;
+  tDtPnNetCap       : string;
+  tDtPnVolCap       : string;
+  tDtPnCIBCap       : string;
+  tDtPnBarCap       : string;
+  tDtPnTCCap        : string;
+  tDTPnLCCap        : string;
+  tDtPnBoxGnetCap   : string;
+  tDtPnPriceCap     : string;
+  tDtPnPriceACap    : string;
+  tDtPnPriceNCap    : string;
+  tDtPnNameCap      : string;
+  tDtPnTNCodeCap    : string;
+  tDtPnBoxTypeCap   : string;
+
+  tMaxContNetCap    : string;
+  tMaxContVolCap    : string;
+  tRealContNetCap   : string;
+  tRealContVolCap   : string;
+  tContNameCap      : string;
+  tNewContFormCap   : string;
+  tNewContFormCh    : string;
+  tBoxItmCap        : string;
+  tBoxCountCap      : string;
+  tBoxNetCap        : string;
+  tCreateBoxCap     : string;
+  tEditBoxCap       : string;
+
+  tOrdPnCap         : string;
+  tOrgSGCol0        : string;
+  tOrgSGCol1        : string;
+  tOrgSGCol2        : string;
+  tOrgSGCol3        : string;
+  tOrgSGCol4        : string;
+  tLoadPnCap        : string;
+  tLoadSGCol1       : string;
+  tLoadSGCol3       : string;
+  tLoadSGCol4       : string;
+  tLoadSGCol5       : string;
+  tLoadSGCol6       : string;
+  tLoadSGCol7       : string;
+  tLoadSGCol8       : string;
+  tLoadSGCol2       : string;
+  tLoadSGCol9       : string;
+  tLoadSGEdBtnHint  : string;
+  tOrdPrintHint     : string;
+  tContLstPrintHint : string;
+  tSelAllBtnHint    : string;
+  tUnSelAllBtnHint  : string;
+  tInvSelBtnHint    : string;
+  tOpnDlg1SCap      : string;
+  tOpnDlgOFCap      : string;
+  tSvDlgOFCap       : string;
+  tPIName           : string;
+  tMovBoxHint       : string;
+  tFindInContHint   : string;
+  tFindError        : string;
+  tFindInOrdHint    : string;
+  tRealContNNetCap  : string;
+  tRealContBoxCap   : string;
+  tAdvFindInOrdHint : string;
+  tNewDtHint        : string;
+  tCopyDtHint       : string;
+  tEditDtHint       : string;
+  tDelDtHint        : string;
+  tExpContHint      : string;
+  tExpOrdHint       : string;
+  tCompScanHint     : string;
+  tUpdateDtHint     : string;
+  tOrdSumBtnHint    : string;
+
+  actOpenOrdCap     : string;
+  actDelOrdCap      : string;
+  actDelOrdHint     : string;
+  actNewContCap     : string;
+  actOpenOrdHint    : string;
+  actNewContHint    : string;
+  actMaxLoadPnCap   : string;
+  actMaxLoadPnHint  : string;
+  actDelContCap     : string;
+  actDelContHint    : string;
+  //Элементы меню Файл
+  actNewCap         : string;
+  actNewHint        : string;
+  actOpenCap        : string;
+  actOpenHint       : string;
+  actSaveCap        : string;
+  actSaveHint       : string;
+  actSaveAsCap      : string;
+  actSaveAsHint     : string;
+  actExitCap        : string;
+  actExitHint       : string;
+  miFileCap         : string;
+  miFileHint        : string;
+  //Элементы меню Настройки
+  miSetCap          : string;
+  miSetHint         : string;
+  actPswrdCap       : string;
+  actPswrdHint      : string;
+  actSetRUSCap      : string;
+  actSetENGCap      : string;
+  actSetCnCap       : string;
+  actSetRUSHint     : string;
+  actSetENFHint     : string;
+  actSetCnHint      : string;
+  miLangCap         : string;
+  miLangHint        : string;
+  //Элементы меню Помощь
+  actHelpCap        : string;
+  actHelpHint       : string;
+  miHelpCap         : string;
+  miHelpHint        : string;
+
+  btnAutoLoadHint   : string;
+  btnCrBoxHint      : string;
+  btnCrItmHint      : string;
+  btnDelBoxHint     : string;
+  btnDelItmHint     : string;
+
+  msgOpenOrdExst    : string;
+  msgNewContExst    : string;
+  msgDelOrd         : string;
+  msgDelOrd2        : string;
+  msgDelCont        : string;
+  msgDelCont2       : string;
+  msgGNetEr         : string;
+  msgNew            : string;
+  msgNetError       : string;
+
+  prstCap           : string;
+  prstPIBGCap       : string;
+  prstPRRGCap       : string;
+  prstRI1           : string;
+  prstRI2           : string;
+  prstRI3           : string;
+
+procedure SetLang(L:integer);
+function TranslateEI(ei:string):string;
+
+implementation
+
+function TranslateEI(ei:string):string;
+begin
+  result:='';
+  if ei='кг' then result:='kg';
+  if ei='г' then result:='g';
+  if ei='м' then result:='m';
+  if ei='см' then result:='cm';
+  if ei='шт' then result:='pcs';
+end;
+
+procedure SetLang(L:integer);
+begin
+  Lang:=L;
+  if L=lgRUS then
+    begin
+      tCaption         :='Программа заполнения контейнеров';
+      tDtPnBomCap      :='BOM код:';
+      tDtPnCIOCap      :='Кол-во в изд.:';
+      tDtPnEICap       :='Единица изм.:';
+      tDtPnNetCap      :='Вес детали,кг:';
+      tDtPnVolCap      :='Объем, м куб:';
+      tDtPnCIBCap      :='В ящике(тек/стар):';
+      tDtPnBarCap      :='Штрих-код:';
+      tDtPnTCCap       :='Заказ кол-во:';
+      tDTPnLCCap       :='Загруж кол-во:';
+      tDtPnTNCodeCap   :='Код ТНВЭД:';
+      tDtPnBoxTypeCap  :='Упаковка:';
+      tOrdPnCap        :='  Список заказа';
+      tOrgSGCol0       :=' №';
+      tOrgSGCol1       :=' Наименование';
+      tOrgSGCol2       :=' Остаток';
+      tOrgSGCol3       :=' Ед измер';
+      tOrgSGCol4       :=' Ящик';
+      tLoadPnCap       :='  Список загрузки';
+      tLoadSGCol4      :=' Кол-во';
+      tLoadSGCol5      :=' Кол мест';
+      tLoadSGCol6      :=' Нетто,кг';
+      tLoadSGCol7      :=' Брутто,кг';
+      tLoadSGCol8      :=' Объем';
+      tLoadSGCol1      :=' Заказ';
+      tLoadSGCol2      :=' Гр.№';
+      tLoadSGCol9      :=' Уп-ка,кг';
+      tMaxContNetCap   :='Макс вес конт,кг:';
+      tMaxContVolCap   :='Макс объем конт,м3:';
+      tRealContNetCap  :='Факт вес брутто,кг:';
+      tRealContVolCap  :='Факт объем конт,м3:';
+      tNewContFormCap  :='Создание нового контейнера';
+      tNewContFormCh   :='Изменение данный о контейнере';
+      tContNameCap     :='Наименование контейнера:';
+      tBoxItmCap       :='Содержимое коробок:';
+      tBoxCountCap     :='Количество коробок:';
+      tBoxNetCap       :='Вес 1ед уп-ки, кг';
+      tCreateBoxCap    :='Создание коробки (коробок)';
+      tEditBoxCap      :='Редактирование коробки (коробок)';
+      tLoadSGEdBtnHint :='Редактирование количества в содержимом коробок';
+      tDtPnBoxGnetCap  :='Брутто группы,кг:';
+      tDtPnPriceCap    :='Цена FOB,USD:';
+      tDtPnPriceNCap   :='Цена Новорос,USD:';
+      tDtPnPriceACap   :='Цена Ангарск,USD:';
+      tDtPnNameCap     :='Др наименован:';
+      tOrdPrintHint    :='Печать заказа';
+      tContLstPrintHint:='Печать содержимого контейнера';
+      tSelAllBtnHint   :='Выбрать все';
+      tUnSelAllBtnHint :='Сбросить все';
+      tInvSelBtnHint   :='Инвертировать выбор';
+      tOpnDlg1SCap     :='Открытие файла заказа из 1С';
+      tOpnDlgOFCap     :='Открытие файла распределения';
+      tSvDlgOFCap      :='Сохранить файл распределения как';
+      tPIName          :='Номер инвойса (последние 4 цифры): ';
+      tMovBoxHint      :='Переместить группу коробок в другой контейнер';
+      tFindInContHint  :='Поиск детали в контейнерах';
+      tFindError       :='Деталь не загружена!';
+      tFindInOrdHint   :='Поиск детали в заказах';
+      tRealContNNetCap :='Факт вес нетто,кг:';
+      tRealContBoxCap  :='Общ кол-во коробок:';
+      tAdvFindInOrdHint:='Расширенный поиск детали по заказам';
+      tNewDtHint       :='Добавление детали в текущий заказ';
+      tCopyDtHint      :='Копирование детали в текущем заказе';
+      tEditDtHint      :='Редактирование информации о детали в заказе (заказах)';
+      tDelDtHint       :='Удалить деталь';
+      tExpContHint     :='Выгрузка даннных о загрузке';
+      tExpOrdHint      :='Выгрузка данных о заказах';
+      tCompScanHint    :='Сравнение с данными сканера';
+      tUpdateDtHint    :='Обновление информации о деталях';
+      tOrdSumBtnHint   :='Объединение заказов';
+
+      actOpenOrdCap    :='Открыть заказ';
+      actDelOrdCap     :='Удалить заказ';
+      actDelOrdHint    :='Удаление информации о текущем заказе';
+      actNewContCap    :='Новый контейнер';
+      actOpenOrdHint   :='Октрытие файла заказа';
+      actNewContHint   :='Создание нового контейнера';
+      actMaxLoadPnCap  :='Панель загрузки на все окно';
+      actMaxLoadPnHint :='Расширить панель загрузки на все окно или уменьшить до исходного размера';
+      actDelContCap    :='Удалить контейнер';
+      actDelContHint   :='"Разгрузка" и удаление контейнера';
+
+      btnAutoLoadHint  :='Автоматическое создание групп коробок';
+      btnCrBoxHint     :='Создание коробки (коробок)';
+      btnCrItmHint     :='Добавление элемента (элементов) в существующую коробку';
+      btnDelBoxHint    :='Удалить коробку (коробки) из контенера';
+      btnDelItmHint    :='Удалить элемент из коробки';
+
+
+      msgOpenOrdExst   :='Такой заказ уже открыт!';
+      msgNewContExst   :='Такой контейнер уже создан!';
+      msgDelOrd        :='Вы действительно хотите удалить заказ "';
+      msgDelOrd2       :='"? Все детали этого заказа будут удалены из всех контейнеров!';
+      msgDelCont       :='Вы действительно хотите удалить контенер "';
+      msgDelCont2      :='"? Все загруженные в него детали будут возвращены в заказы!';
+      msgGNetEr        :='Вес брутто должен быть больше 0!';
+      msgNew           :='Сохранить изменения в текущем представлении?';
+      msgNetError      :='Ошибки в указании веса коробок! Печать невозможна!';
+
+      prstCap          :='Печать содержимого контейнера';
+      prstPIBGCap      :='Инвойс: ';
+      prstPRRGCap      :='Вид док-та: ';
+      prstRI1          :='список';
+      prstRI2          :='ярлыки (все коробки)';
+      prstRI3          :='ярлыки (выбранные коробки)';
+      //Элементы меню Настройки
+      miSetCap         :='Настройки';
+      miSetHint        :='Настройки программы';
+      actPswrdCap      :='Полный доступ';
+      actPswrdHint     :='Включение полного доступа ко всем функциям программы';
+      miLangCap        :='Язык';
+      miLangHint       :='Выбор языка';
+      actSetRUSCap     :='Русский';
+      actSetENGCap     :='Английский';
+      actSetCnCap     :='Анг с китайскими наименованиями';
+      actSetRUSHint    :='Переключить на русский язык';
+      actSetENFHint    :='Переключить на английский язык';
+      actSetCnHint    :='Переключить на анг язык с китайскими наименованиеями';
+       //Элементы меню Файл
+      actNewCap        :='Создать';
+      actNewHint       :='Создание нового рабочего окна';
+      actOpenCap       :='Открыть';
+      actOpenHint      :='Открытие файла рабочего окна';
+      actSaveCap       :='Сохранить';
+      actSaveHint      :='Сохранение рабочего окна в файл';
+      actSaveAsCap     :='Сохранить как';
+      actSaveAsHint    :='Сохранение рабочего окна в файл с новым именем';
+      actExitCap       :='Выход';
+      actExitHint      :='Выход из программы';
+      miFileCap        :='Файл';
+      miFileHint       :='Операции с рабочим окном';
+      //Элементы меню Помощь
+      actHelpCap       :='О программе';
+      actHelpHint      :='О программе';
+      miHelpCap        :='Помощь';
+      miHelpHint       :='Помощь';
+    end;
+  if (L=lgENG)or(L=lgCN) then
+    begin
+      tCaption         :='Container filling program';
+      tDtPnBomCap      :='BOM code:';
+      tDtPnCIOCap      :='Qty in one WM:';
+      tDtPnEICap       :='Unit:';
+      tDtPnNetCap      :='Weight, kg:';
+      tDtPnVolCap      :='Volume, m3:';
+      tDtPnCIBCap      :='In box (new/old):';
+      tDtPnBarCap      :='BAR code:';
+      tDtPnTCCap       :='Ordered qty:';
+      tDTPnLCCap       :='Loaded qty:';
+      tDtPnTNCodeCap   :='Rus custom code:';
+      tDtPnBoxTypeCap  :='Box type:';
+      tOrdPnCap        :='  Order list';
+      tOrgSGCol0       :=' №';
+      tOrgSGCol1       :=' Name';
+      tOrgSGCol2       :=' Rest';
+      tOrgSGCol3       :=' Unit';
+      tOrgSGCol4       :=' QIB';
+      tLoadPnCap       :='  Load list';
+      tLoadSGCol4      :=' Quatity';
+      tLoadSGCol5      :=' Box qty';
+      tLoadSGCol6      :=' Net,kg';
+      tLoadSGCol7      :=' Gross,kg';
+      tLoadSGCol8      :=' Volume';
+      tLoadSGCol1      :=' Order';
+      tLoadSGCol2      :=' Grp №';
+      tLoadSGCol9      :=' Box,kg';
+      tMaxContNetCap   :='Max cont weigth,kg:';
+      tMaxContVolCap   :='Max cont volume,m3:';
+      tRealContNetCap  :='Real gross weight,kg:';
+      tRealContVolCap  :='Real cont volume,m3:';
+      tNewContFormCap  :='Create new container';
+      tNewContFormCh   :='Change container data';
+      tContNameCap     :='Container name';
+      tBoxItmCap       :='Items in box:';
+      tBoxCountCap     :='Qty of boxes:';
+      tBoxNetCap       :='Box net, kg:';
+      tCreateBoxCap    :='Create box (boxes)';
+      tEditBoxCap      :='Edit box (boxes)';
+      tLoadSGEdBtnHint :='Edit qty of items';
+      tDtPnBoxGnetCap  :='Box gross weight,kg:';
+      tDtPnPriceCap    :='Price FOB,USD:';
+      tDtPnPriceNCap   :='Price Nvr,USD:';
+      tDtPnPriceACap   :='Price Ang,USD:';
+      tDtPnNameCap     :='All name:';
+      tOrdPrintHint    :='Print order';
+      tContLstPrintHint:='Print container list';
+      tSelAllBtnHint   :='Select all';
+      tUnSelAllBtnHint :='Unselect all';
+      tInvSelBtnHint   :='Invert selection';
+      tOpnDlg1SCap     :='Open order file';
+      tOpnDlgOFCap     :='Open work file';
+      tSvDlgOFCap      :='Save work file as';
+      tPIName          :='Invoice number (last 4 sumbols): ';
+      tMovBoxHint      :='Mov group in another container';
+      tFindInContHint  :='Find detail in containers';
+      tFindError       :='Detail not loaded!';
+      tFindInOrdHint   :='Find detail in orders';
+      tRealContNNetCap :='Real net weight,kg:';
+      tRealContBoxCap  :='Total boxes qty:';
+      tAdvFindInOrdHint:='Advanced find in orders';
+      tNewDtHint       :='New detail in current order';
+      tCopyDtHint      :='Copy detail in current order';
+      tEditDtHint      :='Edit datil data in current order (or all orders)';
+      tDelDtHint       :='Delete detail';
+      tExpContHint     :='Export container data';
+      tExpOrdHint      :='Export order data';
+      tCompScanHint    :='Compare data to scan';
+      tUpdateDtHint    :='Update detail data';
+      tOrdSumBtnHint   :='Sum order';
+
+      actOpenOrdCap    :='Open order';
+      actDelOrdCap     :='Delete order';
+      actNewContCap    :='New container';
+      actOpenOrdHint   :='Open order file';
+      actDelOrdHint    :='Delete current order';
+      actNewContHint   :='Create new conainer';
+      actMaxLoadPnCap  :='Maximize Load panel';
+      actMaxLoadPnHint :='Maximize or minimize load list panel';
+      actDelContCap    :='Delete container';
+      actDelContHint   :='"Unload" and delete container';
+
+      btnAutoLoadHint  :='Create automatically group of boxes';
+      btnCrBoxHint     :='Create manually box (boxes)';
+      btnCrItmHint     :='Add manually item (items) to current box';
+      btnDelBoxHint    :='Delete manually box (boxes)from container';
+      btnDelItmHint    :='Delete manually item from box';
+
+      msgOpenOrdExst   :='This order is already open!';
+      msgNewContExst   :='This container is alredy created!';
+      msgDelOrd        :='Do you really want to delete order "';
+      msgDelOrd2       :='"? All detail of this order will be deleted!';
+      msgDelCont       :='Do you really want to delete container "';
+      msgDelCont2      :='"? All loaded details will be returned to orders!';
+      msgGNetEr        :='Gross weight should be more zero!';
+      msgNew           :='Do you want to save changes in current workspace?';
+      msgNetError      :='Errors in the gross weight of boxes! Printing is impossible!';
+
+      prstCap          :='Select print mode';
+      prstPIBGCap      :='Invoice: ';
+      prstPRRGCap      :='Doc type: ';
+      prstRI1          :='list';
+      prstRI2          :='box lables (all)';
+      prstRI3          :='box lables (selection)';
+      //Элементы меню Настройки
+      miSetCap         :='Settings';
+      miSetHint        :='Program settings';
+      actPswrdCap      :='Full access';
+      actPswrdHint     :='Set full access to all functions';
+      miLangCap        :='Language';
+      miLangHint       :='Language settings';
+      actSetRUSCap     :='Russian';
+      actSetENGCap     :='English';
+      actSetCnCap      :='Eng and chine name';
+      actSetRUSHint    :='Set Russian language';
+      actSetENFHint    :='Set English language';
+      actSetCnHint     :='Set Eng and chine name';
+      //Элементы меню Файл
+      actNewCap        :='New';
+      actNewHint       :='New workspace';
+      actOpenCap       :='Open';
+      actOpenHint      :='Open workspace file';
+      actSaveCap       :='Save';
+      actSaveHint      :='Save workspace in file';
+      actSaveAsCap     :='Save as';
+      actSaveAsHint    :='Save workspace in new file';
+      actExitCap       :='Exit';
+      actExitHint      :='Eit to Windows';
+      miFileCap        :='File';
+      miFileHint       :='File command';
+      //Элементы меню Помощь
+      actHelpCap       :='About program';
+      actHelpHint      :='About program';
+      miHelpCap        :='Help';
+      miHelpHint       :='Help';
+    end;
+end;
+
+end.
